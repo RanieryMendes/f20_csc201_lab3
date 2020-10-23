@@ -1,9 +1,9 @@
 
 public class RGB {
 
-    private int R;
-    private int G;
-    private int B;
+    private int R =0;
+    private int G = 0;
+    private int B = 0;
 
 
     public void setR(int r) {
@@ -38,16 +38,24 @@ public class RGB {
     private int  f;
 
     Freq(){
-        f = 3043050;
+
+        System.out.println("Freq constructor called");
+       // this.color= null;
+        this.f = 3043050;
     }
 
     public void setColor(RGB el){
         this.color =el;
     }
 
-    public void setF(){
+    public void setF(int value){
+        this.f=value;
+    }
+
+    public void incrementF(){
         this.f++;
     }
+
 
     public RGB getColor(){
         return  this.color;
