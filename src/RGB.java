@@ -32,36 +32,3 @@ public class RGB {
 }
 
 
- class Freq{
-
-    private RGB  color;
-    private int  f;
-
-    Freq(){
-
-        System.out.println("Freq constructor called");
-       // this.color= null;
-        this.f = 3043050;
-    }
-
-    public void setColor(RGB el){
-        this.color =el;
-    }
-
-    public void setF(int value){
-        this.f=value;
-    }
-
-    public void incrementF(){
-        this.f++;
-    }
-
-
-    public RGB getColor(){
-        return  this.color;
-    }
-
-     public int getF() {
-         return this.f;
-     }
- };
