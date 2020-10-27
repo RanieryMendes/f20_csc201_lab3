@@ -1,45 +1,53 @@
-import java.io.InputStream;
-import java.io.FileInputStream;
-import java.io.DataInputStream;
-import java.io.IOException;
+
+
+
+import java.io.*;
 import java.time.Instant;
 import java.time.Duration;
-import java.io.File;
-import  java.io.PrintWriter;
-import java.util.Collections;
 public class Main {
 
 
 
     public static void main(String[] args) throws IOException {
 
-        Instant start = Instant.now();
 
-        String path = "/Users/ranierymendes/Documents/Lab3/src/Ollie200x200.raw";
 
-       //Use four command-line arguments for your program: image file name, n, m, and array size.
 
-        /*String imageName = args[0];
+
+       //Setting the command-line arguments into the program: image file name, height, width, and array size.
+
+        String imageName = args[0];
+
+        String path = "src/" +imageName; //setting the proper path to the file
 
         int height = Integer.parseInt(args[1]);
+
         int width = Integer.parseInt(args[2]);
 
         int arraySize = Integer.parseInt(args[3]);
-*/
+
         //declare a hash table ht here
-        hashTable HT = new hashTable(1001);
+        hashTable HT = new hashTable(arraySize);
 
-       // System.out.println(HT.ht[37].getF());
 
+
+        //start clock counter
+        Instant start = Instant.now();
 
 
         try {
             InputStream is = new FileInputStream(path);
+
+
             // create data input stream
-            Freq element = new Freq();
             DataInputStream input = new DataInputStream(is);
-            for (int i = 0; i < 200; i++)
-                for (int j = 0; j < 200; j++) {
+
+            //create Freq object that will store RGB object and int frequency counter
+            Freq element = new Freq();
+
+
+            for (int i = 0; i < height; i++)
+                for (int j = 0; j < width; j++) {
 
                     RGB pixel = new RGB();
 
@@ -48,22 +56,15 @@ public class Main {
                     pixel.setB(input.readUnsignedByte());
 
 
+
+                    //set the RGB object into the Freq object
                     element.setColor(pixel);
 
-                    System.out.println("Baby me conta  suas cores: ");
-                    System.out.println("R: " + element.getColor().getR() + " G: " + element.getColor().getG() + " B: " + element.getColor().getB());
-                    if(element.getColor().getG()==255){
-                        System.out.println("im green");
-                    }
 
+                    //insert the Freq object into the Hashtable
                     HT.insert(element);
 
 
-                    System.out.println(" Denovo so p confirmar   R: " + element.getColor().getR() + " G: " + element.getColor().getG() + " B: " + element.getColor().getB());
-
-
-
-                    //Now, use the hash table somehow to add this RGB color to the frequency count
                 }
 
         } catch (IOException ex) {
@@ -74,55 +75,75 @@ public class Main {
 
         }
 
+        //stop clock
         Instant finish = Instant.now();
 
+        //get durantion for the hashtable to allocate  all  pixels
         long duration = Duration.between(start, finish).toSeconds();
 
 
-        System.out.println("This is the size of the final ht: " + HT.ht.length);
 
-        for(int i =0; i< HT.getTableLentgh(); i++){
+        //method to sort the hashtable and print the 256 most frequent colors.
+        HT.sortArray();
 
-            if(HT.ht[i].getF()!=3043050){
-                System.out.println("Index: "+ i + " has this Color: "+ HT.ht[i].getColor().getR()+ ", " + HT.ht[i].getColor().getG() + ", " + HT.ht[i].getColor().getB()  +"  Freq is: " +HT.ht[i].getF() );
+
+        try{
+            File report = new File("src/results.txt");
+            if(report.isFile()){
+                System.out.println("File opened");
             }
 
-        }
 
-       HT.sortArray();
-
-       // int [ ] test = {0,1,2,3,4,5,6,7,8,9};
-
-       // for (int i= test.length -1; i> test.length-6; i--){
-          //  System.out.println("This is test i:  " + i );
-       // }
-
-        File report = new File("results.txt");
-
-        PrintWriter resul = new PrintWriter(report);
+            FileWriter resul = new FileWriter(report, true);
 
 
-        resul.write("Essa brincadeira  lasted " + duration +" seconds.");
+            resul.write("\nMethod Implemented: Quadratic Probing");
 
-        resul.println("Number of Collisions: "  +  HT.number_collision());
+            resul.write("\nFile Name: " + imageName);
 
-        resul.println("Final Table size: " + HT.getTableLentgh());
+            resul.write("\nDimensions: " + height + " X " + width);
 
-        resul.println("Number of Rehashes: " + HT.getRehashingCounter());
+            resul.write("\nInitial Table size: " + arraySize);
 
-        System.out.println("Method Implemented: Quadratic Probing ");
 
-        System.out.println("File Name: ");
-
-        System.out.println("Dimensions: ");
-
-        System.out.println("Initial Table size: ");
+            resul.write("\nTestCase Findings");
 
 
 
+            resul.write("\nRuntime " + duration +" seconds.");
+
+            resul.write("\nNumber of Collisions: "  +  HT.number_collision());
+
+            resul.write("\nFinal Table size: " + HT.getTableLentgh());
+
+            resul.write("\nNumber of Rehashes: " + HT.getRehashingCounter() + "\n");
+
+            resul.close();
 
 
-        System.out.println("Essa brincadeira  lasted " + duration +" seconds.");
+        }catch(IOException e){
+            System.out.println(e);
+
+        };
+
+
+
+
+        //Printing important information about program the program and test cases' implementation
+
+        System.out.println(" \n Method Implemented: Quadratic Probing ");
+
+        System.out.println("File Name: " + imageName);
+
+        System.out.println("Dimensions: " + height + " X " + width);
+
+        System.out.println("Initial Table size: " + arraySize);
+
+
+        System.out.println("\nTestCase Findings");
+
+
+        System.out.println("Runtime: " + duration +" seconds.");
 
         System.out.println("Number of Collisions: "  +  HT.number_collision());
 

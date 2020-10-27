@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-import java.util.Collections;
+
 import java.util.Arrays;
 
 
@@ -8,9 +8,9 @@ public class hashTable {
 
    Freq [] ht;
 
-   final double MAX_LOAD= 0.5;
 
-   private int tableLentgh =5;
+
+   private int tableLentgh;
 
    private int trackSize = 0;
 
@@ -21,26 +21,24 @@ public class hashTable {
 
    hashTable(){
        ht = new Freq [101] ;
+       this.tableLentgh=101;
    }
 
+   //constructor to create a hashtable from the size inserted by the user
    hashTable(int size){
 
        ht = new Freq[size];
 
-
-
-
-       System.out.println("ht was called " + size);
        this.tableLentgh=size;
 
        //populating the array of Freq elements
 
        for (int i = 0; i < size; i++){
+
+           // creates new Freq object and stores at Hashtable (array of Freqs)
            Freq init = new Freq();
            ht[i] = init;
-          // test.add(i, init);
 
-           System.out.println("oi");
        }
        //store -1 in all index so I know index is free to receive a Freq element
 
@@ -363,7 +361,7 @@ public class hashTable {
 
        for(int i= clean.length-1; i > clean.length-257; i--){
 
-           System.out.println("Index: " + i + " "+  clean[i].getColor().getR() + " " +clean[i].getColor().getG() +" "+  clean[i].getColor().getB() + "  " + clean[i].getF());
+           System.out.println("Color: ("+  clean[i].getColor().getR() + ", " +clean[i].getColor().getG() +", "+  clean[i].getColor().getB() + "). Frequency in the picture: " + clean[i].getF());
        }
 
 

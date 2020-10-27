@@ -1,0 +1,42 @@
+
+Method Implemented: Quadratic Probing
+File Name: Ollie200x200.raw
+Dimensions: 200 X 200
+Initial Table size: 1001
+TestCase Findings
+Runtime 5 seconds.
+Number of Collisions: 45080
+Final Table size: 64237
+Number of Rehashes: 6
+
+Method Implemented: Quadratic Probing
+File Name: Ollie200x200.raw
+Dimensions: 200 X 200
+Initial Table size: 101
+TestCase Findings
+Runtime 5 seconds.
+Number of Collisions: 42525
+Final Table size: 55609
+Number of Rehashes: 9
+
+
+Method Implemented: Quadratic Probing
+File Name: LadyBugs800x600.raw
+Dimensions: 800 X 600
+Initial Table size: 487
+TestCase Findings
+Runtime 75 seconds.
+Number of Collisions: 700525
+Final Table size: 2023891
+Number of Rehashes: 12
+
+Method Implemented: Quadratic Probing
+File Name: Hibiscus400x300.raw
+Dimensions: 400 X 300
+Initial Table size: 127
+TestCase Findings
+Runtime 62 seconds.
+Number of Collisions: 1614850
+Final Table size: 269683
+Number of Rehashes: 11
+
