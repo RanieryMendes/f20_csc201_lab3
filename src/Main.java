@@ -1,3 +1,16 @@
+/*
+Raniery Mendes
+CSC201 Fall 2020
+Programming Assignment 3
+October 27, 2020
+ */
+
+//This program uses a hash table to perform the  count the frequencies of different colors in an uncompressed RGB digital image.
+// The 256 most frequently occurring colors are print  out in a table with their RGB values.
+
+
+//Input values are taken from the command line
+//Image file that is read by the program must be located at the src folder.
 
 
 
@@ -9,10 +22,6 @@ public class Main {
 
 
     public static void main(String[] args) throws IOException {
-
-
-
-
 
        //Setting the command-line arguments into the program: image file name, height, width, and array size.
 
@@ -83,7 +92,7 @@ public class Main {
 
 
 
-        //method to sort the hashtable and print the 256 most frequent colors.
+        //method to sort the hash table and print the 256 most frequent colors.
         HT.sortArray();
 
 

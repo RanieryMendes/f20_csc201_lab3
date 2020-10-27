@@ -1,21 +1,30 @@
-import java.util.ArrayList;
+/*
+Raniery Mendes
+CSC201 Fall 2020
+Programming Assignment 3
+October 27, 2020
+ */
 
+//This class implements the Hashtable of Freq objects.
+
+import java.util.ArrayList;
 import java.util.Arrays;
 
 
 public class hashTable {
 
-
+    //HT data structure
    Freq [] ht;
 
-
-
+   //variable that
    private int tableLentgh;
 
    private int trackSize = 0;
 
+   //
    private int collisionCounter=0;
 
+   //variable that tracks the number of rehashing per
    private int rehashingCounter=0;
 
 
@@ -46,10 +55,13 @@ public class hashTable {
 
    }
 
+   //Hash function
    public int h (Freq el) {
 
+       //multiply the RGB values from Freq el
       int value =  el.getColor().getR() * el.getColor().getB() * el.getColor().getG();
 
+      //module the RGB value
       int resultToHash = value % this.tableLentgh;
 
       return resultToHash;
@@ -58,59 +70,66 @@ public class hashTable {
 
 
 
+   //insert function that stores Freq elements into the hashtable
    public void insert (Freq item){
 
 
+       //checks if the table is more than half full, if yes it rehashes the table
         if(trackSize> tableLentgh/2){
 
-
-            System.out.println("We gotta grow bigger");
-            System.out.println("Before my size was: " + tableLentgh);
+            //call function to increase table
             increaseArray(tableLentgh*2);
-            System.out.println("Now my size is: " +tableLentgh);
+
 
         }
 
 
 
+        //check if RGB color is already stored in the table, if findColor(item) is false then, it is a new color,
+       // so store it into the table
         if(findColor(item)== false) {
 
-
-
+            //integer counter for
             int k= 1;
-            //it will get the index to element be hashed
+
+            //get the index the element has to be hashed to
             int index = h(item);
 
-            System.out.println("Modulus index: " + index);
 
-
-
-            //look for an available
+            //While loop that looks for an available spot in the table.
+            //Freq elements are initialized with f=3043050, so if they have this value it means the slot is availabel
+            // to store a  Freq element (with a new color)
+            //it gets into the loop only if the index assigned is already taken by another Freq element
             while (ht[index].getF() != 3043050) {
 
+                //collision resolution - Quadratic probing
                 index = index + k * k;
 
-                System.out.println("Collision Attempt: " + index + " Instead");
 
+                //ensure the index is within the table's boundaries
                 index %= ht.length;
 
+                //increases the value of
                 k++;
 
+                //track the total number of collisions that happened while reading the pixels of a picture
                 collisionCounter++;
 
             }
 
 
-            System.out.println("Deixa eu ver uma antes: " + "R: " + item.getColor().getR() + " G: " + item.getColor().getG() + " B:" +  item.getColor().getB());
-
+            //when slot in table is found, set the color into the freq element that is in the array
+            // and  set the frequency counter for that color = to 1.
             this.ht[index].setColor(item.getColor());
-            System.out.println("Deixa eu ver uma parada: " + "R: " + ht[index].getColor().getR() + " G: " + ht[index].getColor().getG() + " B:" +  ht[index].getColor().getB());
             ht[index].setF(1);
+
+            //increments variable that tracks the number of Freq elements with colors already placed in the table
+            //it will be used to avoid the table gets more than half full
             trackSize++;
 
 
 
-            //find index we can store
+
 
         }
 
@@ -118,59 +137,68 @@ public class hashTable {
 
     }
 
+    //insert function called only for rehashing process
     public void insert_Rehash (Freq item){
 
 
+        //checks if the table is more than half full, if yes it rehashes the table
         if(trackSize> tableLentgh/2){
 
 
-            System.out.println("We gotta grow bigger");
-            System.out.println("Before my size was: " + tableLentgh);
+            //call function to increase table
             increaseArray(tableLentgh*2);
-            System.out.println("Now my size is: " +tableLentgh);
+
 
         }
 
 
+        //check if RGB color is already stored in the table, if findColor(item) is false then, it is a new color,
+        // so store it into the table
 
         if(findColor(item)== false) {
 
 
 
             int k= 1;
-            //it will get the index to element be hashed
+
+            //get the index the element has to be hashed to
             int index = h(item);
 
-            System.out.println("Modulus index: " + index);
 
 
 
-            //look for an available
+
+            //While loop that looks for an available spot in the table.
+            //Freq elements are initialized with f=3043050, so if they have this value it means the slot is availabel
+            // to store a  Freq element (with a new color)
+            //it gets into the loop only if the index assigned is already taken by another Freq element
             while (ht[index].getF() != 3043050) {
 
+                //collision resolution - Quadratic probing
                 index = index + k * k;
 
-                System.out.println("Collision Attempt: " + index + " Instead");
 
+                //ensure the index is within the table's boundaries
                 index %= ht.length;
 
                 k++;
 
+                //track the total number of collisions that happened while reading the pixels of a picture
                 collisionCounter++;
 
             }
 
 
-            System.out.println("Deixa eu ver uma antes: " + "R: " + item.getColor().getR() + " G: " + item.getColor().getG() + " B:" +  item.getColor().getB());
-
+            //when slot in table is found, set the color into the freq element that is in the array
+            // and  set the frequency counter for that color = to 1.
             this.ht[index].setColor(item.getColor());
-            System.out.println("Deixa eu ver uma parada: " + "R: " + ht[index].getColor().getR() + " G: " + ht[index].getColor().getG() + " B:" +  ht[index].getColor().getB());
             ht[index].setF(item.getF());
+
+
+            //increments variable that tracks the number of Freq elements with colors already placed in the new
+            // rehashed table. It will be used to avoid the table gets more than half full
             trackSize++;
 
-
-
-            //find index we can store
 
         }
 
@@ -184,32 +212,30 @@ public class hashTable {
    public boolean findColor(Freq key){
 
 
-       System.out.println("This is key's status R: " + key.getColor().getR() + " G: " +key.getColor().getG() + " B: " + key.getColor().getB());
-
        int k = 1;
 
+       //get the first index the element has to be hashed to
        int indexHashed = h(key);
 
-       System.out.println("HashedTo: " + indexHashed);
+        //if not in the first index, check if it is in any of the possible slots that Freq element could be hashed to
+
 
        while(ht[indexHashed].getF() != 3043050){
 
-           //it is not a new color, so we just need to increase its frequency in the hashtable
-           System.out.println("This is the index hashed: " + indexHashed);
-           System.out.println("this is its status: R: " + ht[indexHashed].getColor().getR() + " G: " + ht[indexHashed].getColor().getG() + " B: " +  ht[indexHashed].getColor().getB());
-           System.out.println("This is key's status R: " + key.getColor().getR() + " G: " +key.getColor().getG() + " B: " + key.getColor().getB());
+           //check if the Freq element in the HT has the same color of the Freq element's RGB color being inserted into the HT
            if(ht[indexHashed].getColor().getR() == key.getColor().getR() && ht[indexHashed].getColor().getG() == key.getColor().getG()&&ht[indexHashed].getColor().getB() == key.getColor().getB()){
 
-               System.out.println("Key Found. It is already stored in array. Just need to increase. It is at "+ indexHashed);
+               //if color is already in a Freq element of the HT, just increase its frequency
                ht[indexHashed].incrementF();
 
                return true;
            }
 
+           //going to next possible slot the Freq element could be hashed to
            indexHashed= indexHashed + k * k;
 
-           // go to following possible slot
 
+           //ensure that the next slot is within the HT's boundaries
            indexHashed %= getTableLentgh();
 
 
@@ -220,6 +246,7 @@ public class hashTable {
        return false;
    }
 
+   //method to check is a number is prime. This function will be used during the rehashing process
     public boolean isPrime(int n)
     {
         // Corner cases
@@ -263,107 +290,109 @@ public class hashTable {
         return prime;
     }
 
-    public boolean checkPrime(int value){
-       if (value % 2 ==0){
-           return false;
-       }
 
-       for(int i= 3; i * i >= value; i+=2){
-           if (value % i == 0){
-               return false;
-           }
-       }
-       return true;
-   }
-
-
-
+    //function called to increase the HT
+    //it will double the HT's size and find the next prime number after that. This will be the next size of the HT
 
    public void increaseArray (int minArraySize){
 
+       //track size of the total number of rehashes carried out
        rehashingCounter++;
 
+       //gets the new size, which will be a prime
        int newSize = nextPrime(minArraySize);
 
+       //call function to build the new larger HT
        increaseOld(newSize);
 
 
    }
 
+
+
+   //function will increase the HT's size by creating a new larger HT and inserting the already stored Freq elements to the new HT
    public void increaseOld(int newArraySize){
 
-       System.out.println("im in increase Old");
 
+       //create an array that contains only the Freq elements that contain RGB colors.
        Freq [] cleanFromOld = removeEmptySlots(this.ht);
 
-       for(int i=0; i< cleanFromOld.length; i++){
 
-           System.out.println("This is f: " + cleanFromOld[i].getF());
 
-           int k=9;
-       }
-
+       // create the new HT with the new size
        ht = new Freq[newArraySize];
 
+       //update the HT size
        this.tableLentgh = newArraySize;
 
+       //populate the array with Freq elements so it can receive the Freq elements with actual colors
      for (int i = 0; i < newArraySize; i++) {
            Freq init = new Freq();
            ht[i] = init;
 
        }
 
-       //hash clean data to new
-
+       //hash clean data to the new array
        for (Freq obj: cleanFromOld){
+
+           //use the especial insert function to arrange the already stored Freq elements into the new larger HT
            insert_Rehash(obj);
        }
 
 
    }
 
+   //function that will return an array based on the HT, however, without the empty slots
    public Freq[] removeEmptySlots(Freq[] arrayToBeCleaned){
 
+       //create an ArrayList that will receive the Freq elements already stored in the HT
        ArrayList<Freq> list = new ArrayList<>();
 
 
+       //add the Freq elements that were already stored in the HT
+
        for(Freq obj : arrayToBeCleaned){
            if(obj.getF()!=3043050){
-
 
                list.add(obj);
            }
 
        }
 
-       for(int i = 0; i< list.size(); i++){
-           System.out.println(list.get(i).getColor().getR() + ", "+ list.get(i).getColor().getG() + " , " + list.get(i).getColor().getB());
-           System.out.println(list.get(i).getF());
-       }
 
+        //transform the ArrayList into an array and return it
        return list.toArray(new Freq[list.size()]);
    }
 
+   //function that sorts the HT and print the 256 most frequent colors
    public void sortArray (){
 
-
-
-       int size = this.tableLentgh;
-
-       int lastIndexTable = tableLentgh -1;
-
-
+       //create an array with only the Freq elements inserted into the HT
        Freq [] clean = removeEmptySlots(this.ht);
 
+       //sort array using compareTo method declared in Freq class
        Arrays.sort(clean);
 
-       System.out.println("Table size: " + clean.length + "  this: " + this.tableLentgh);
 
-       for(int i= clean.length-1; i > clean.length-257; i--){
+       //case the image has less than 256 RGB colors
+       if(clean.length < 256){
 
-           System.out.println("Color: ("+  clean[i].getColor().getR() + ", " +clean[i].getColor().getG() +", "+  clean[i].getColor().getB() + "). Frequency in the picture: " + clean[i].getF());
+
+           for(int i= 0; i < clean.length; i++){
+
+               System.out.println("Color: ("+  clean[i].getColor().getR() + ", " +clean[i].getColor().getG() +", "+  clean[i].getColor().getB() + "). Frequency in the picture: " + clean[i].getF());
+           }
+
        }
 
+
+       else {
+
+           for (int i = clean.length - 1; i > clean.length - 257; i--) {
+
+               System.out.println("Color: (" + clean[i].getColor().getR() + ", " + clean[i].getColor().getG() + ", " + clean[i].getColor().getB() + "). Frequency in the picture: " + clean[i].getF());
+           }
+       }
 
 
 
