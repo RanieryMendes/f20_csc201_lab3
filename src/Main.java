@@ -2,7 +2,7 @@
 Raniery Mendes
 CSC201 Fall 2020
 Programming Assignment 3
-October 27, 2020
+October 29, 2020
  */
 
 //This program uses a hash table to perform the  count the frequencies of different colors in an uncompressed RGB digital image.
@@ -15,8 +15,6 @@ October 27, 2020
 
 
 import java.io.*;
-import java.time.Instant;
-import java.time.Duration;
 public class Main {
 
 
@@ -41,7 +39,8 @@ public class Main {
 
 
         //start clock counter
-        Instant start = Instant.now();
+        long start = System.nanoTime();
+
 
 
         try {
@@ -85,62 +84,23 @@ public class Main {
         }
 
         //stop clock
-        Instant finish = Instant.now();
+        long finish = System.nanoTime();
 
         //get durantion for the hashtable to allocate  all  pixels
-        long duration = Duration.between(start, finish).toSeconds();
+        long duration =  finish - start;
 
+        long time_in_miliseconds= duration/1000000;
+
+        long time_in_seconds = time_in_miliseconds /1000;
 
 
         //method to sort the hash table and print the 256 most frequent colors.
         HT.sortArray();
 
 
-        try{
-            File report = new File("src/results.txt");
-            if(report.isFile()){
-                System.out.println("File opened");
-            }
-
-
-            FileWriter resul = new FileWriter(report, true);
-
-
-            resul.write("\nMethod Implemented: Quadratic Probing");
-
-            resul.write("\nFile Name: " + imageName);
-
-            resul.write("\nDimensions: " + height + " X " + width);
-
-            resul.write("\nInitial Table size: " + arraySize);
-
-
-            resul.write("\nTestCase Findings");
-
-
-
-            resul.write("\nRuntime " + duration +" seconds.");
-
-            resul.write("\nNumber of Collisions: "  +  HT.number_collision());
-
-            resul.write("\nFinal Table size: " + HT.getTableLentgh());
-
-            resul.write("\nNumber of Rehashes: " + HT.getRehashingCounter() + "\n");
-
-            resul.close();
-
-
-        }catch(IOException e){
-            System.out.println(e);
-
-        };
-
-
-
-
         //Printing important information about program the program and test cases' implementation
 
-        System.out.println(" \n Method Implemented: Quadratic Probing ");
+        System.out.println(" \nMethod Implemented: Quadratic Probing ");
 
         System.out.println("File Name: " + imageName);
 
@@ -149,10 +109,10 @@ public class Main {
         System.out.println("Initial Table size: " + arraySize);
 
 
-        System.out.println("\nTestCase Findings");
+        System.out.println("\nTest Case Findings");
 
 
-        System.out.println("Runtime: " + duration +" seconds.");
+        System.out.println("Runtime: " + time_in_miliseconds +" milliseconds.");
 
         System.out.println("Number of Collisions: "  +  HT.number_collision());
 

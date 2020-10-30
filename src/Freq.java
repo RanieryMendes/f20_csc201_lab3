@@ -2,7 +2,7 @@
 Raniery Mendes
 CSC201 Fall 2020
 Programming Assignment 3
-October 27, 2020
+October 29, 2020
  */
 
 
@@ -20,7 +20,7 @@ public class Freq implements Comparable<Freq>{
     Freq(){
 
         //The frequency counter is set to 3043050, which is an arbitrary value.
-        this.f = 3043050;
+        this.f = -1;
     }
 
     //setter methods for the RGB and frequency counter variables

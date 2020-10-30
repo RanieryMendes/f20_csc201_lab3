@@ -2,10 +2,10 @@
 Raniery Mendes
 CSC201 Fall 2020
 Programming Assignment 3
-October 27, 2020
+October 29, 2020
  */
 
-//This class implements the Hashtable of Freq objects.
+//This class implements the Hash table of Freq objects.
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -100,7 +100,7 @@ public class hashTable {
             //Freq elements are initialized with f=3043050, so if they have this value it means the slot is availabel
             // to store a  Freq element (with a new color)
             //it gets into the loop only if the index assigned is already taken by another Freq element
-            while (ht[index].getF() != 3043050) {
+            while (ht[index].getF() != -1) {
 
                 //collision resolution - Quadratic probing
                 index = index + k * k;
@@ -172,7 +172,7 @@ public class hashTable {
             //Freq elements are initialized with f=3043050, so if they have this value it means the slot is availabel
             // to store a  Freq element (with a new color)
             //it gets into the loop only if the index assigned is already taken by another Freq element
-            while (ht[index].getF() != 3043050) {
+            while (ht[index].getF() != -1) {
 
                 //collision resolution - Quadratic probing
                 index = index + k * k;
@@ -220,7 +220,7 @@ public class hashTable {
         //if not in the first index, check if it is in any of the possible slots that Freq element could be hashed to
 
 
-       while(ht[indexHashed].getF() != 3043050){
+       while(ht[indexHashed].getF() != -1){
 
            //check if the Freq element in the HT has the same color of the Freq element's RGB color being inserted into the HT
            if(ht[indexHashed].getColor().getR() == key.getColor().getR() && ht[indexHashed].getColor().getG() == key.getColor().getG()&&ht[indexHashed].getColor().getB() == key.getColor().getB()){
@@ -249,13 +249,15 @@ public class hashTable {
    //method to check is a number is prime. This function will be used during the rehashing process
     public boolean isPrime(int n)
     {
-        // Corner cases
+        // Check for corner cases
         if (n <= 1) return false;
         if (n <= 3) return true;
 
         // This is checked so that we can skip
         // middle five numbers in below loop
-        if (n % 2 == 0 || n % 3 == 0) return false;
+        if (n % 2 == 0 || n % 3 == 0) {
+            return false;
+        }
 
         for (int i = 5; i * i <= n; i = i + 6)
             if (n % i == 0 || n % (i + 2) == 0)
@@ -286,7 +288,7 @@ public class hashTable {
                 found = true;
         }
 
-        System.out.println("This is Prime " + prime);
+
         return prime;
     }
 
@@ -352,7 +354,7 @@ public class hashTable {
        //add the Freq elements that were already stored in the HT
 
        for(Freq obj : arrayToBeCleaned){
-           if(obj.getF()!=3043050){
+           if(obj.getF()!=-1){
 
                list.add(obj);
            }
@@ -377,8 +379,10 @@ public class hashTable {
        //case the image has less than 256 RGB colors
        if(clean.length < 256){
 
+           System.out.println("Top " + clean.length + " most frequent colors");
 
-           for(int i= 0; i < clean.length; i++){
+
+           for(int i= clean.length-1; i >=0;  i--){
 
                System.out.println("Color: ("+  clean[i].getColor().getR() + ", " +clean[i].getColor().getG() +", "+  clean[i].getColor().getB() + "). Frequency in the picture: " + clean[i].getF());
            }
@@ -388,6 +392,7 @@ public class hashTable {
 
        else {
 
+           System.out.println("Top 256 most frequent colors");
            for (int i = clean.length - 1; i > clean.length - 257; i--) {
 
                System.out.println("Color: (" + clean[i].getColor().getR() + ", " + clean[i].getColor().getG() + ", " + clean[i].getColor().getB() + "). Frequency in the picture: " + clean[i].getF());
