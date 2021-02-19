@@ -42,6 +42,8 @@ public class Main {
         long start = System.nanoTime();
 
 
+        RGB [] [] originalPic = new RGB [height][width];
+
 
         try {
             InputStream is = new FileInputStream(path);
@@ -63,7 +65,7 @@ public class Main {
                     pixel.setG(input.readUnsignedByte());
                     pixel.setB(input.readUnsignedByte());
 
-
+                    originalPic[i][j] = pixel;
 
                     //set the RGB object into the Freq object
                     element.setColor(pixel);
@@ -96,6 +98,9 @@ public class Main {
 
         //method to sort the hash table and print the 256 most frequent colors.
         HT.sortArray();
+        HT.setSlices(8,8,4);
+        HT.getMinMaxColor();
+        HT.setPieceColorValues();
 
 
         //Printing important information about program the program and test cases' implementation

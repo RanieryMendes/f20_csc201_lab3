@@ -1,0 +1,3 @@
+ 
+ Method Implemented: Quadratic Probing File Name: Ollie200x200.rawDimensions: 200 X 200Initial Table size: 1001
+TestCase FindingsRuntime 6 seconds.Number of Collisions: 45080Final Table size: 64237Number of Rehashes: 6

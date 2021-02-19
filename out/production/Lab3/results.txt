@@ -1,0 +1,232 @@
+
+Method Implemented: Quadratic Probing
+File Name: Ollie200x200.raw
+Dimensions: 200 X 200
+Initial Table size: 1001
+TestCase Findings
+Runtime 5 seconds.
+Number of Collisions: 45080
+Final Table size: 64237
+Number of Rehashes: 6
+
+Method Implemented: Quadratic Probing
+File Name: Ollie200x200.raw
+Dimensions: 200 X 200
+Initial Table size: 101
+TestCase Findings
+Runtime 5 seconds.
+Number of Collisions: 42525
+Final Table size: 55609
+Number of Rehashes: 9
+
+
+Method Implemented: Quadratic Probing
+File Name: LadyBugs800x600.raw
+Dimensions: 800 X 600
+Initial Table size: 487
+TestCase Findings
+Runtime 75 seconds.
+Number of Collisions: 700525
+Final Table size: 2023891
+Number of Rehashes: 12
+
+Method Implemented: Quadratic Probing
+File Name: Hibiscus400x300.raw
+Dimensions: 400 X 300
+Initial Table size: 127
+TestCase Findings
+Runtime 62 seconds.
+Number of Collisions: 1614850
+Final Table size: 269683
+Number of Rehashes: 11
+
+
+Method Implemented: Quadratic Probing
+File Name: Hibiscus400x300.raw
+Dimensions: 400 X 300
+Initial Table size: 127
+TestCase Findings
+Runtime 0 seconds.
+Number of Collisions: 1614850
+Final Table size: 269683
+Number of Rehashes: 11
+
+Method Implemented: Quadratic Probing
+File Name: LadyBugs800x600.raw
+Dimensions: 800 X 600
+Initial Table size: 127
+TestCase Findings
+Runtime 2 seconds.
+Number of Collisions: 448506
+Final Table size: 1078787
+Number of Rehashes: 13
+
+Method Implemented: Quadratic Probing
+File Name: LadyBugs800x600.raw
+Dimensions: 800 X 600
+Initial Table size: 487
+TestCase Findings
+Runtime 2 seconds.
+Number of Collisions: 700525
+Final Table size: 2023891
+Number of Rehashes: 12
+
+Method Implemented: Quadratic Probing
+File Name: LadyBugs800x600.raw
+Dimensions: 600 X 800
+Initial Table size: 487
+TestCase Findings
+Runtime 2 seconds.
+Number of Collisions: 700525
+Final Table size: 2023891
+Number of Rehashes: 12
+
+Method Implemented: Quadratic Probing
+File Name: LadyBugs800x600.raw
+Dimensions: 600 X 800
+Initial Table size: 487
+TestCase Findings
+Runtime -2562906933 miliseconds.
+Number of Collisions: 700525
+Final Table size: 2023891
+Number of Rehashes: 12
+
+Method Implemented: Quadratic Probing
+File Name: LadyBugs800x600.raw
+Dimensions: 600 X 800
+Initial Table size: 487
+TestCase Findings
+Runtime 2476557317 miliseconds.
+Number of Collisions: 700525
+Final Table size: 2023891
+Number of Rehashes: 12
+
+Method Implemented: Quadratic Probing
+File Name: LadyBugs800x600.raw
+Dimensions: 600 X 800
+Initial Table size: 487
+TestCase Findings
+Runtime 2460 miliseconds.
+Number of Collisions: 700525
+Final Table size: 2023891
+Number of Rehashes: 12
+
+Method Implemented: Quadratic Probing
+File Name: Ollie200x200.raw
+Dimensions: 200 X 200
+Initial Table size: 101
+TestCase Findings
+Runtime 227 miliseconds.
+Number of Collisions: 42525
+Final Table size: 55609
+Number of Rehashes: 9
+
+Method Implemented: Quadratic Probing
+File Name: Ollie200x200.raw
+Dimensions: 200 X 200
+Initial Table size: 1001
+TestCase Findings
+Runtime 245 miliseconds.
+Number of Collisions: 45080
+Final Table size: 64237
+Number of Rehashes: 6
+
+Method Implemented: Quadratic Probing
+File Name: Hibiscus400x300.raw
+Dimensions: 400 X 300
+Initial Table size: 1001
+TestCase Findings
+Runtime 734 miliseconds.
+Number of Collisions: 1535880
+Final Table size: 256957
+Number of Rehashes: 8
+
+Method Implemented: Quadratic Probing
+File Name: Hibiscus400x300.raw
+Dimensions: 400 X 300
+Initial Table size: 127
+TestCase Findings
+Runtime 735 miliseconds.
+Number of Collisions: 1614850
+Final Table size: 269683
+Number of Rehashes: 11
+
+Method Implemented: Quadratic Probing
+File Name: RGBHorizontal.raw
+Dimensions: 30 X 30
+Initial Table size: 10
+TestCase Findings
+Runtime 17 miliseconds.
+Number of Collisions: 3
+Final Table size: 10
+Number of Rehashes: 0
+
+Method Implemented: Quadratic Probing
+File Name: RGBHorizontal.raw
+Dimensions: 30 X 30
+Initial Table size: 10
+TestCase Findings
+Runtime 6 miliseconds.
+Number of Collisions: 3
+Final Table size: 10
+Number of Rehashes: 0
+
+Method Implemented: Quadratic Probing
+File Name: RGBHorizontal.raw
+Dimensions: 30 X 30
+Initial Table size: 10
+TestCase Findings
+Runtime 10 miliseconds.
+Number of Collisions: 3
+Final Table size: 10
+Number of Rehashes: 0
+
+Method Implemented: Quadratic Probing
+File Name: Hibiscus400x300.raw
+Dimensions: 400 X 300
+Initial Table size: 10
+TestCase Findings
+Runtime 812 miliseconds.
+Number of Collisions: 2308832
+Final Table size: 411527
+Number of Rehashes: 15
+
+Method Implemented: Quadratic Probing
+File Name: Hibiscus400x300.raw
+Dimensions: 400 X 300
+Initial Table size: 10
+TestCase Findings
+Runtime 840 miliseconds.
+Number of Collisions: 2308832
+Final Table size: 411527
+Number of Rehashes: 15
+
+Method Implemented: Quadratic Probing
+File Name: Hibiscus400x300.raw
+Dimensions: 400 X 300
+Initial Table size: 10
+TestCase Findings
+Runtime 800 miliseconds.
+Number of Collisions: 2308832
+Final Table size: 411527
+Number of Rehashes: 15
+
+Method Implemented: Quadratic Probing
+File Name: Hibiscus400x300.raw
+Dimensions: 400 X 300
+Initial Table size: 10
+TestCase Findings
+Runtime 832 miliseconds.
+Number of Collisions: 2308832
+Final Table size: 411527
+Number of Rehashes: 15
+
+Method Implemented: Quadratic Probing
+File Name: Hibiscus400x300.raw
+Dimensions: 400 X 300
+Initial Table size: 127
+TestCase Findings
+Runtime 735 miliseconds.
+Number of Collisions: 1614850
+Final Table size: 269683
+Number of Rehashes: 11

@@ -11,10 +11,18 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 
+
+
 public class hashTable {
 
     //HT data structure
    Freq [] ht;
+   ArrayList <Control> controlAllB = new ArrayList<>();
+   ArrayList <Control> controlAllR = new ArrayList<>();
+   ArrayList <Control> controlAllG = new ArrayList<>();
+
+   ArrayList <RGB> possibleColors = new ArrayList<>();
+   private final int  RGB_VALUE = 256;
 
    //variable that
    private int tableLentgh;
@@ -26,6 +34,10 @@ public class hashTable {
 
    //variable that tracks the number of rehashing per
    private int rehashingCounter=0;
+
+   Palete Red = new Palete();
+   Palete Blue = new Palete();
+   Palete Green = new Palete();
 
 
    hashTable(){
@@ -375,6 +387,8 @@ public class hashTable {
        //sort array using compareTo method declared in Freq class
        Arrays.sort(clean);
 
+       this.ht = clean;
+
 
        //case the image has less than 256 RGB colors
        if(clean.length < 256){
@@ -404,6 +418,302 @@ public class hashTable {
 
 
    }
+
+
+   //need to get the most used R, G, and B.
+
+   //
+
+   public  void setSlices(int numberR, int numberG, int numberB){
+
+
+
+       int sizeSlicesR =  RGB_VALUE / numberR;
+
+       for( int i = 0; i < RGB_VALUE; i = i + sizeSlicesR){
+
+           Control color = new Control();
+
+           color.setStartV(i);
+
+           color.setFinalV((i + sizeSlicesR - 1));
+
+
+           System.out.println(color.getStartV() + " to " + color.getFinalV() );
+
+           color.setMinVal(color.getFinalV());
+           color.setMaxVal(0);
+
+           controlAllR.add(color);
+
+
+
+
+       }
+
+
+
+       int sizeSlicesB =  RGB_VALUE / numberB;
+
+
+       for( int i = 0; i < RGB_VALUE; i = i + sizeSlicesB){
+
+           Control color = new Control();
+
+           color.setStartV(i);
+
+           color.setFinalV((i + sizeSlicesB - 1));
+
+           color.setMinVal(color.getFinalV());
+           color.setMaxVal(0);
+
+           System.out.println(color.getStartV() + " to " + color.getFinalV() );
+
+           controlAllB.add(color);
+
+
+
+
+       }
+
+       int sizeSlicesG =  RGB_VALUE / numberG;
+
+
+
+       for( int i = 0; i < RGB_VALUE; i = i + sizeSlicesG){
+
+           Control color = new Control();
+
+           color.setStartV(i);
+
+           color.setFinalV((i + sizeSlicesG - 1));
+
+
+           System.out.println(color.getStartV() + " to " + color.getFinalV() );
+
+           controlAllG.add(color);
+
+
+       }
+
+
+
+
+
+
+
+   }
+
+
+   public void getMinMaxColor (){
+
+
+       System.out.println("Size: " + ht.length);
+
+       //RED
+
+       for (int i = 0; i < this.ht.length; i++){
+
+          int v =  ht[i].getColor().getR();
+
+           System.out.println("aqui " + controlAllR.size());
+           System.out.println("v: " + v);
+
+
+
+          for(int k= 0; k <controlAllR.size(); k++){
+
+
+              System.out.println("Start "+ controlAllR.get(k).getStartV() + " Final: " + controlAllR.get(k).getFinalV());
+
+              if(  controlAllR.get(k).getStartV() <= v && v <= controlAllR.get(k).getFinalV()){
+
+                  System.out.println("v is in: " +v );
+
+                  System.out.println("Current max: " + controlAllR.get(k).getMaxVal());
+
+
+
+
+
+                  if(controlAllR.get(k).getMaxVal() < v){
+
+                      controlAllR.get(k).setMaxVal(v);
+                      System.out.println("New max: " + controlAllR.get(k).getMaxVal());
+                      if(v == 159){
+                          System.out.println("to aqui 31");
+                      }
+                  }
+
+                  if(v >= 0 && controlAllR.get(k).getMinVal() > v){
+                      controlAllR.get(k).setMinVal(v);
+                  }
+
+              }
+          }
+
+
+       }
+       for (int p = 0; p < controlAllR.size(); p++){
+
+           System.out.println(controlAllR.get(p).getStartV() + " to " + controlAllR.get(p).getFinalV() + " has Min: " + controlAllR.get(p).getMinVal() + " and max: " + controlAllR.get(p).getMaxVal());
+       }
+
+       //GREEN
+
+       for (int i = 0; i < this.ht.length; i++){
+
+           int v =  ht[i].getColor().getG();
+
+           System.out.println("aqui " + controlAllG.size());
+           System.out.println("v: " + v);
+
+
+
+           for(int k= 0; k <controlAllG.size(); k++){
+
+
+               System.out.println("Start "+ controlAllG.get(k).getStartV() + " Final: " + controlAllG.get(k).getFinalV());
+
+               if(  controlAllG.get(k).getStartV() <= v && v <= controlAllG.get(k).getFinalV()){
+
+                   System.out.println("v is in: " +v );
+
+                   System.out.println("Current max: " + controlAllG.get(k).getMaxVal());
+
+
+
+
+
+                   if(controlAllG.get(k).getMaxVal() < v){
+
+                       controlAllG.get(k).setMaxVal(v);
+                       System.out.println("New max: " + controlAllG.get(k).getMaxVal());
+                       if(v == 191){
+                           System.out.println("to aqui 31");
+                       }
+                   }
+
+                   if(v >= 0 && controlAllG.get(k).getMinVal() > v){
+                       controlAllG.get(k).setMinVal(v);
+                   }
+
+               }
+           }
+
+       }
+
+       for (int p = 0; p < controlAllG.size(); p++){
+
+           System.out.println(controlAllG.get(p).getStartV() + " to " + controlAllG.get(p).getFinalV() + " has Min: " + controlAllG.get(p).getMinVal() + " and max: " + controlAllG.get(p).getMaxVal());
+       }
+
+       //BLUE
+       for (int i = 0; i < this.ht.length; i++){
+
+           int v =  ht[i].getColor().getB();
+
+           System.out.println("aqui " + controlAllB.size());
+           System.out.println("v: " + v);
+
+
+
+           for(int k= 0; k <controlAllB.size(); k++){
+
+
+               System.out.println("Start "+ controlAllB.get(k).getStartV() + " Final: " + controlAllB.get(k).getFinalV());
+
+               if(  controlAllB.get(k).getStartV() <= v && v <= controlAllB.get(k).getFinalV()){
+
+                   System.out.println("v is in: " +v );
+
+                   System.out.println("Current max: " + controlAllB.get(k).getMaxVal());
+
+
+
+
+
+                   if(controlAllB.get(k).getMaxVal() < v){
+
+                       controlAllB.get(k).setMaxVal(v);
+                       System.out.println("New max: " + controlAllB.get(k).getMaxVal());
+                       if(v == 191){
+                           System.out.println("to aqui 31");
+                       }
+                   }
+
+                   if(v >= 0 && controlAllB.get(k).getMinVal() > v){
+                       controlAllB.get(k).setMinVal(v);
+                   }
+
+               }
+           }
+
+       }
+
+       for (int p = 0; p < controlAllR.size(); p++){
+
+           System.out.println(controlAllR.get(p).getStartV() + " to " + controlAllR.get(p).getFinalV() + " has Min: " + controlAllR.get(p).getMinVal() + " and max: " + controlAllR.get(p).getMaxVal());
+       }
+
+       for (int p = 0; p < controlAllG.size(); p++){
+
+           System.out.println(controlAllG.get(p).getStartV() + " to " + controlAllG.get(p).getFinalV() + " has Min: " + controlAllG.get(p).getMinVal() + " and max: " + controlAllG.get(p).getMaxVal());
+       }
+
+       for (int p = 0; p < controlAllB.size(); p++){
+
+           System.out.println(controlAllB.get(p).getStartV() + " to " + controlAllB.get(p).getFinalV() + " has Min: " + controlAllB.get(p).getMinVal() + " and max: " + controlAllB.get(p).getMaxVal());
+       }
+
+
+
+   }
+
+   public void setPieceColorValues (){
+
+       Red.setColor_range(controlAllR);
+       Green.setColor_range(controlAllG);
+       Blue.setColor_range(controlAllB);
+
+
+       for( int i=0; i < Red.color_range.length; i++){
+
+           for(int k=0 ; k < Green.color_range.length; k++){
+
+
+               for (int p = 0; p < Blue.color_range.length; p++){
+
+
+
+                   RGB pixel = new RGB();
+
+                   pixel.setR(Red.color_range[i]);
+                   pixel.setG(Green.color_range[k]);
+                   pixel.setB(Blue.color_range[p]);
+
+                   possibleColors.add(pixel);
+
+               }
+           }
+
+       }
+
+
+       System.out.println("Those are the " + possibleColors.size()  +" colors:  ");
+
+       for (int m = 0; m < possibleColors.size(); m++){
+
+
+           System.out.println(" Color R: " + possibleColors.get(m).getR() + " G: " + possibleColors.get(m).getG() + " B: " + possibleColors.get(m).getB());
+       }
+
+
+
+   }
+
+
+
 
 
    public int number_collision(){
